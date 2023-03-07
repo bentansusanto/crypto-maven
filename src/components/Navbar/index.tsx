@@ -1,19 +1,93 @@
+import { useState } from "react";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import Logo from '../../assets/Logo-cryptomaven.svg'
+import Logo from "../../assets/Logo-cryptomaven.svg";
+import mediaQuery from "../../config/mediaQuery/mediaQuery";
+import { Quicklink } from "../../utils/types";
+
+const links: Quicklink[] = [
+  { page: "Home", link: "/" },
+  { page: "About", link: "/about" },
+  { page: "Blog", link: "/blog" },
+];
 
 const Navbar = () => {
+  const isMobile = mediaQuery("(max-width : 600px)");
+  const [open, setOpen] = useState<boolean>(false);
+  const handleSideNav = () => {
+    setOpen(!open);
+  };
+
   return (
     <div>
-      <div className="flex items-center space-x-5 py-5 px-20">
-        <img src={Logo} alt="logo-crypto-maven" className="w-12"/>
-        <ul className="flex space-x-5">
-          <li>
-            <Link to={"/"}>Homepage</Link>
-          </li>
-          <li>
-            <Link to={"/about"}>About</Link>
-          </li>
+      <div
+        className={` ${isMobile ? "relative" : "px-20"} flex items-center py-5`}
+      >
+        <img
+          src={Logo}
+          alt="logo-crypto-maven"
+          className={`${isMobile ? "w-8 ml-6" : "w-10"}`}
+        />
+        {isMobile ? (
+          <div
+            className={`${
+              open
+                ? "bg-black w-full h-screen absolute top-0 px-6 py-5"
+                : "hidden"
+            }`}
+          >
+            <div>
+              <IoCloseSharp
+                onClick={() => setOpen(false)}
+                className="text-2xl"
+              />
+            </div>
+            <div className="bg-gray-500 w-full h-[.5px] mt-5" />
+            <div className="space-x-5 flex justify-center mt-5">
+              <button className="border border-white rounded-md py-2.5 px-5">
+                <Link to={"/login"}>Login</Link>
+              </button>
+              <button className="bg-gradient-to-r from-cyan-500 py-2.5 rounded-md px-5 to-blue-500">
+                <Link to={"/register"}>Register</Link>
+              </button>
+            </div>
+            <div className="bg-gray-500 w-full h-[.5px] mt-5" />
+
+            <ul className="mt-5 space-y-5">
+          {
+            links.map((val,idx) => (
+              <li key={idx}>
+                <Link to={val.link}>{val.page}</Link>
+              </li>
+            ))
+          }
         </ul>
+          </div>
+        ) : (
+          <div className="flex items-center ml-auto">
+            <ul className="flex space-x-10 mr-40">
+              {links.map((val, idx) => (
+                <li key={idx}>
+                  <Link to={val.link}>{val.page}</Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="space-x-10 ">
+              <button className="border border-white rounded-md py-2.5 px-5">
+                <Link to={"/login"}>Login</Link>
+              </button>
+              <button className="bg-gradient-to-r from-cyan-500 py-2.5 rounded-md px-5 to-blue-500">
+                <Link to={"/register"}>Register</Link>
+              </button>
+            </div>
+          </div>
+        )}
+        <HiOutlineMenuAlt3
+          onClick={handleSideNav}
+          className={`${isMobile ? "text-2xl ml-auto mr-6" : "hidden"}`}
+        />
       </div>
     </div>
   );

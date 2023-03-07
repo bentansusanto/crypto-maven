@@ -8,6 +8,10 @@
 }
 
 body{
-  @apply overflow-x-hidden bg-[#1A1A1A] text-white
+  @apply overflow-x-hidden bg-[#1A1A1A] text-white font-opensans
+}
+
+p, li, button, input{
+  @apply text-[14px]
 }
 
