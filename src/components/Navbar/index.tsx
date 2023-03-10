@@ -5,11 +5,20 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo-cryptomaven.svg";
 import mediaQuery from "../../config/mediaQuery/mediaQuery";
 import { Quicklink } from "../../utils/types";
+import { MobileLink } from "../../utils/types";
+import {BiHomeAlt, BiBitcoin} from 'react-icons/bi'
+import {FaBlogger} from 'react-icons/fa'
 
 const links: Quicklink[] = [
   { page: "Home", link: "/" },
   { page: "About", link: "/about" },
   { page: "Blog", link: "/blog" },
+];
+
+const mobileLinks: MobileLink[] = [
+  { page: "Home", link: "/", icon :<BiHomeAlt/> },
+  { page: "About", link: "/about", icon :<BiBitcoin/> },
+  { page: "Blog", link: "/blog",icon :<FaBlogger/> },
 ];
 
 const Navbar = () => {
@@ -54,10 +63,11 @@ const Navbar = () => {
             </div>
             <div className="bg-gray-500 w-full h-[.5px] mt-5" />
 
-            <ul className="mt-5 space-y-5">
+            <ul className="mt-5 space-y-8">
           {
-            links.map((val,idx) => (
-              <li key={idx}>
+            mobileLinks.map((val,idx) => (
+              <li key={idx} className="flex items-center space-x-2">
+                <p className="text-xl">{val.icon}</p>
                 <Link to={val.link}>{val.page}</Link>
               </li>
             ))
@@ -66,7 +76,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="flex items-center ml-auto">
-            <ul className="flex space-x-10 mr-40">
+            <ul className="flex space-x-10 mr-20">
               {links.map((val, idx) => (
                 <li key={idx}>
                   <Link to={val.link}>{val.page}</Link>
@@ -74,7 +84,7 @@ const Navbar = () => {
               ))}
             </ul>
 
-            <div className="space-x-10 ">
+            <div className="space-x-5 ">
               <button className="border border-white rounded-md py-2.5 px-5">
                 <Link to={"/login"}>Login</Link>
               </button>
