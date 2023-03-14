@@ -54,10 +54,10 @@ const Navbar = () => {
             </div>
             <div className="bg-gray-500 w-full h-[.5px] mt-5" />
             <div className="space-x-5 flex justify-center mt-5">
-              <button className="border border-white rounded-md py-2.5 px-5">
+              <button className="border border-white rounded-md py-2 px-5">
                 <Link to={"/login"}>Login</Link>
               </button>
-              <button className="bg-gradient-to-r from-cyan-500 py-2.5 rounded-md px-5 to-blue-500">
+              <button className="bg-gradient-to-r from-cyan-500 py-2 rounded-md px-5 to-blue-500">
                 <Link to={"/register"}>Register</Link>
               </button>
             </div>
@@ -85,10 +85,10 @@ const Navbar = () => {
             </ul>
 
             <div className="space-x-5 ">
-              <button className="border border-white rounded-md py-2.5 px-5">
+              <button className="border border-white rounded-md py-2 px-5">
                 <Link to={"/login"}>Login</Link>
               </button>
-              <button className="bg-gradient-to-r from-cyan-500 py-2.5 rounded-md px-5 to-blue-500">
+              <button className="bg-gradient-to-r from-cyan-500 py-2 rounded-md px-5 to-blue-500">
                 <Link to={"/register"}>Register</Link>
               </button>
             </div>

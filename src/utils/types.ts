@@ -6,3 +6,8 @@ export interface Quicklink{
 export interface MobileLink extends Quicklink{
     icon : any;
 }
+
+export interface Content{
+    title : string;
+    content : string;
+}
